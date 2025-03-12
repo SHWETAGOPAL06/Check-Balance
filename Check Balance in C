@@ -1,0 +1,70 @@
+#include <stdio.h>
+
+void checkbalance(float balance);
+float withdraw(float balance);
+float deposit(float balance);
+
+int main() {
+    int choice;
+    float balance = 10000;
+
+    while (1) { 
+        printf("1. Check balance\n");
+        printf("2. Withdraw\n");
+        printf("3. Deposit\n");
+        printf("4. Exit\n");
+        printf("Enter your choice: ");
+        scanf("%d", &choice);
+
+        switch (choice) {
+            case 1:
+                checkbalance(balance);
+                break;
+            case 2:
+                balance = withdraw(balance);
+                break;
+            case 3:
+                balance = deposit(balance);
+                break;
+            case 4:
+                printf("Exiting...\n");
+                return 0;
+            default:
+                printf("Invalid choice\n");
+        }
+    }
+
+    return 0;
+}
+
+void checkbalance(float balance) {
+    printf("Your current balance is: %.2f\n", balance);
+}
+
+float withdraw(float balance) {
+    float amount;
+    printf("Enter the amount you want to withdraw: ");
+    scanf("%f", &amount);
+
+    if (amount > balance) {
+        printf("Insufficient balance\n");
+    } else {
+        balance -= amount; 
+        printf("Withdrawal successful\n");
+        printf("Your current balance is: %.2f\n", balance);
+    }
+
+    return balance; // Return the updated balance
+}
+
+float deposit(float balance) {
+    float amount;
+    printf("Enter the amount you want to deposit: ");
+    scanf("%f", &amount);
+
+    balance += amount; 
+    printf("Deposit successful\n");
+    printf("Your current balance is: %.2f\n", balance);
+
+    return balance; 
+}
